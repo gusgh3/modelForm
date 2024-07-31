@@ -9,7 +9,7 @@ def index(request):
         'articles':articles,
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'form.html', context)
 
 def create(request):
 
@@ -47,3 +47,23 @@ def delete(request, id):
     
     return redirect('articles:index')
 
+def update(request, id):
+    article = Article.objects.get(id=id)
+
+    if request.method == 'POST':
+        article = Article.objects.get(id=id)
+        form = ArticleForm(request.POST, instance=article)
+
+        if form.is_valid():
+            form.save()
+            return redirect('article:index')
+
+    else:
+        # article = Article.objects.get(id=id)
+        form = ArticleForm(instance=article)
+
+    context = {
+        'form': form,
+        }
+
+    return render(request, 'form.html', context)
