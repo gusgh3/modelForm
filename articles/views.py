@@ -12,10 +12,13 @@ def index(request):
     return render(request, 'index.html', context)
 
 def create(request):
+
+
+    #-----------------------------------
     # new/ => 빈 종이를 보여주는 기능
     # create/ => 사용자가 입력한 데이터를 저장
 
-    # GET create/ => 빈 종이를 보여주는 기능
+    # GET create/ => 빈 종이를 보여주는 기능 (사용자에게 빈 form을 보여주는?)
     # POST create/ => 사용자가 입력한 데이터를 저장하는 기능
 
     if request.method == 'POST':
@@ -28,19 +31,12 @@ def create(request):
             # article = Article()
             # article.title = title
             # article.save()
-        else:
-            # form = ArticleForm(request.POST)
-
-            context = {
-                'form':form,
-            }
-
-            return render(request, 'create.html', context)
+        
     else:
         form = ArticleForm()
 
-        context = {
-        'form': form,
-        }
-        return render(request, 'create.html', context)
+    context = {
+    'form': form,
+    }
+    return render(request, 'create.html', context)
 
