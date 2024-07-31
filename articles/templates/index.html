@@ -6,6 +6,11 @@
     <h5>{{article.title}}</h5>
     <p>{{artilce.content}}</p>
     <p>{{article.created_At}}</p>
+    <a href="{% url 'articles:delete' id=article.id %}">delete</a>
+    <form action="{% url 'articles:delete' id=article.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="delete">
+    </form>
 <hr>
 {% endfor %}
 {% endblock %}
