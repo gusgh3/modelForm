@@ -56,7 +56,7 @@ def update(request, id):
 
         if form.is_valid():
             form.save()
-            return redirect('article:index')
+            return redirect('articles:index')
 
     else:
         # article = Article.objects.get(id=id)
